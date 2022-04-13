@@ -13,7 +13,10 @@ import java.util.Objects;
  */
 public class Sighting 
 {
-
+    Timestamp sightings;
+    private Hero hero;
+    private Location location;
+    
     @Override
     public int hashCode() 
     {
@@ -96,7 +99,4 @@ public class Sighting
     {
         this.location = location;
     }
-    Timestamp sightings;
-    private Hero hero;
-    private Location location;
 }

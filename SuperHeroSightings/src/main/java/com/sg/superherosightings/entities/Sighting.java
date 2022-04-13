@@ -13,61 +13,53 @@ import java.util.Objects;
  */
 public class Sighting 
 {
+    private int sightingID;
     Timestamp sightings;
-    private Hero hero;
-    private Location location;
-    
+    private int heroID;
+    private int locationID;
     @Override
     public int hashCode() 
     {
-        int hash = 3;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Objects.hashCode(this.sightings);
-        hash = 97 * hash + Objects.hashCode(this.hero);
-        hash = 97 * hash + Objects.hashCode(this.location);
+        int hash = 7;
+        hash = 61 * hash + this.sightingID;
+        hash = 61 * hash + Objects.hashCode(this.sightings);
+        hash = 61 * hash + this.heroID;
+        hash = 61 * hash + this.locationID;
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) 
     {
-        if (this == obj) 
-        {
+        if (this == obj) {
             return true;
         }
-        if (obj == null) 
-        {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) 
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Sighting other = (Sighting) obj;
-        if (this.id != other.id) 
-        {
+        if (this.sightingID != other.sightingID) {
             return false;
         }
-        if (!Objects.equals(this.sightings, other.sightings)) 
-        {
+        if (this.heroID != other.heroID) {
             return false;
         }
-        if (!Objects.equals(this.hero, other.hero)) 
-        {
+        if (this.locationID != other.locationID) {
             return false;
         }
-        return Objects.equals(this.location, other.location);
-    }
-    private int id;
-
-    public int getId() 
+        return Objects.equals(this.sightings, other.sightings);
+    }    
+    public int getSightingID() 
     {
-        return id;
+        return sightingID;
     }
 
-    public void setId(int id) 
+    public void setSightingID(int id) 
     {
-        this.id = id;
+        this.sightingID = id;
     }
 
     public Timestamp getSightings() 
@@ -80,23 +72,23 @@ public class Sighting
         this.sightings = sightings;
     }
 
-    public Hero getHero() 
+    public int getHeroID() 
     {
-        return hero;
+        return heroID;
     }
 
-    public void setHero(Hero hero) 
+    public void setHeroID(int heroID) 
     {
-        this.hero = hero;
+        this.heroID = heroID;
     }
 
-    public Location getLocation() 
+    public int getLocationID() 
     {
-        return location;
+        return locationID;
     }
 
-    public void setLocation(Location location) 
+    public void setLocationID(int locationID) 
     {
-        this.location = location;
+        this.locationID = locationID;
     }
 }

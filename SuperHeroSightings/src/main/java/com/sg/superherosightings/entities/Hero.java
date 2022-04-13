@@ -26,9 +26,9 @@ public class Hero
     public int hashCode() 
     {
         int hash = 7;
-        hash = 79 * hash + this.id;
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.description);
+        hash = 79 * hash + this.heroID;
+        hash = 79 * hash + Objects.hashCode(this.heroName);
+        hash = 79 * hash + Objects.hashCode(this.heroDescription);
         hash = 79 * hash + Objects.hashCode(this.superpowers);
         hash = 79 * hash + Objects.hashCode(this.organizations);
         hash = 79 * hash + Objects.hashCode(this.sightings);
@@ -48,13 +48,13 @@ public class Hero
             return false;
         }
         final Hero other = (Hero) obj;
-        if (this.id != other.id) {
+        if (this.heroID != other.heroID) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.heroName, other.heroName)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+        if (!Objects.equals(this.heroDescription, other.heroDescription)) {
             return false;
         }
         if (!Objects.equals(this.superpowers, other.superpowers)) {
@@ -68,32 +68,32 @@ public class Hero
 
     public int getId() 
     {
-        return id;
+        return heroID;
     }
 
     public void setId(int id) 
     {
-        this.id = id;
+        this.heroID = id;
     }
 
     public String getName() 
     {
-        return name;
+        return heroName;
     }
 
     public void setName(String name) 
     {
-        this.name = name;
+        this.heroName = name;
     }
 
     public String getDescription() 
     {
-        return description;
+        return heroDescription;
     }
 
     public void setDescription(String description) 
     {
-        this.description = description;
+        this.heroDescription = description;
     }
     
        public List<Superpower> getSuperpowers() 

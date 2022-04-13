@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -27,31 +29,57 @@ public class SuperpowerDaoDB implements SuperpowerDao
     @Override
     public Superpower getSuperpowerById(int id) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try
+        {
+            final String SELECT_SUPERPOWER_BY_ID = "SELECT * FROM Superpower WHERE superpowerID = ?";
+            return jdbc.queryForObject(SELECT_SUPERPOWER_BY_ID, new SuperpowerMapper(), id);
+        }
+        catch (DataAccessException ex)
+        {
+            return null;
+        }
     }
 
     @Override
     public List<Superpower> getAllSuperpowers() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String SELECT_ALL_SUPERPOWERS = "SELECT * from Superpower";
+        return jdbc.query(SELECT_ALL_SUPERPOWERS, new SuperpowerMapper());
     }
 
     @Override
+    @Transactional
     public Superpower addSuperpower(Superpower superpower) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String INSERT_SUPERPOWER = "INSERT INTO Superpower(superpowerName)"
+        + "VALUES(?)";
+        
+        jdbc.update(INSERT_SUPERPOWER, superpower.getName());
+        
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        superpower.setId(newId);
+        return superpower;
     }
 
     @Override
     public void updateSuperpower(Superpower superpower) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String UPDATE_SUPERPOWER = "UPDATE SUPERPOWER SET superpowerID"
+                + "WHERE id = ?";
+        jdbc.update(UPDATE_SUPERPOWER,
+                superpower.getName(),
+                superpower.getId());
     }
 
     @Override
+    @Transactional
     public void deleteSuperpowerById(int id) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String DELETE_HERO_SUPERPOWER = "DELETE FROM HeroSuperpower WHERE heroID = ?";
+        jdbc.update(DELETE_HERO_SUPERPOWER, id);
+        
+        final String DELETE_SUPERPOWER = "DELETE FROM student WHERE id = ?";
+        jdbc.update(DELETE_SUPERPOWER, id);
     }
 
     @Override

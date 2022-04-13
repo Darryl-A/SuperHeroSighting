@@ -32,11 +32,13 @@ public class Superpower
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass()) 
+        {
             return false;
         }
         final Superpower other = (Superpower) obj;
-        if (this.id != other.id) {
+        if (this.id != other.id) 
+        {
             return false;
         }
         return Objects.equals(this.name, other.name);

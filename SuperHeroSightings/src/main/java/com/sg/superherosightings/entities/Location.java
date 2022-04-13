@@ -26,10 +26,10 @@ public class Location
     public int hashCode() 
     {
         int hash = 3;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.description);
-        hash = 37 * hash + Objects.hashCode(this.address);
+        hash = 37 * hash + this.locationID;
+        hash = 37 * hash + Objects.hashCode(this.locationName);
+        hash = 37 * hash + Objects.hashCode(this.locationDescription);
+        hash = 37 * hash + Objects.hashCode(this.locationAddress);
         hash = 37 * hash + this.latitude;
         hash = 37 * hash + this.longitude;
         hash = 37 * hash + Objects.hashCode(this.sightings);
@@ -50,7 +50,7 @@ public class Location
             return false;
         }
         final Location other = (Location) obj;
-        if (this.id != other.id) {
+        if (this.locationID != other.locationID) {
             return false;
         }
         if (this.latitude != other.latitude) {
@@ -59,13 +59,13 @@ public class Location
         if (this.longitude != other.longitude) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.locationName, other.locationName)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+        if (!Objects.equals(this.locationDescription, other.locationDescription)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (!Objects.equals(this.locationAddress, other.locationAddress)) {
             return false;
         }
         return Objects.equals(this.sightings, other.sightings);
@@ -81,42 +81,42 @@ public class Location
     }
     public int getId() 
     {
-        return id;
+        return locationID;
     }
 
     public void setId(int id) 
     {
-        this.id = id;
+        this.locationID = id;
     }
 
     public String getName() 
     {
-        return name;
+        return locationName;
     }
 
     public void setName(String name) 
     {
-        this.name = name;
+        this.locationName = name;
     }
 
     public String getDescription() 
     {
-        return description;
+        return locationDescription;
     }
 
     public void setDescription(String description) 
     {
-        this.description = description;
+        this.locationDescription = description;
     }
 
     public String getAddress() 
     {
-        return address;
+        return locationAddress;
     }
 
     public void setAddress(String address) 
     {
-        this.address = address;
+        this.locationAddress = address;
     }
 
     public void setCoordinates(int latitude, int longitude) 

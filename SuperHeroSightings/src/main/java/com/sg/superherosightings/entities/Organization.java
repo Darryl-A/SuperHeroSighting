@@ -23,10 +23,10 @@ public class Organization
     public int hashCode() 
     {
         int hash = 7;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.description);
-        hash = 37 * hash + Objects.hashCode(this.address);
+        hash = 37 * hash + this.organizationID;
+        hash = 37 * hash + Objects.hashCode(this.organizationName);
+        hash = 37 * hash + Objects.hashCode(this.organizationDescription);
+        hash = 37 * hash + Objects.hashCode(this.organizationAddress);
         hash = 37 * hash + Objects.hashCode(this.heroes);
         return hash;
     }
@@ -44,16 +44,16 @@ public class Organization
             return false;
         }
         final Organization other = (Organization) obj;
-        if (this.id != other.id) {
+        if (this.organizationID != other.organizationID) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.organizationName, other.organizationName)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+        if (!Objects.equals(this.organizationDescription, other.organizationDescription)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (!Objects.equals(this.organizationAddress, other.organizationAddress)) {
             return false;
         }
         return Objects.equals(this.heroes, other.heroes);
@@ -71,39 +71,39 @@ public class Organization
 
     public int getId() 
     {
-        return id;
+        return organizationID;
     }
     public void setId(int id) 
     {
-        this.id = id;
+        this.organizationID = id;
     }
 
     public String getName() 
     {
-        return name;
+        return organizationName;
     }
 
     public void setName(String name) 
     {
-        this.name = name;
+        this.organizationName = name;
     }
 
     public String getDescription() 
     {
-        return description;
+        return organizationDescription;
     }
 
     public void setDescription(String description) 
     {
-        this.description = description;
+        this.organizationDescription = description;
     }
 
     public String getAddress() 
     {
-        return address;
+        return organizationAddress;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.organizationAddress = address;
     }
 }

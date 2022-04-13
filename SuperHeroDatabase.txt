@@ -1,0 +1,82 @@
+DROP DATABASE IF EXISTS superHeroSightings;
+CREATE DATABASE superHeroSightings;
+
+USE superHeroSightings;
+
+CREATE TABLE Hero (
+	heroID INT AUTO_INCREMENT,
+	heroName VARCHAR(30) NOT NULL,
+	heroDescription VARCHAR(50) NOT NULL,
+	isHero BOOLEAN DEFAULT true,
+	CONSTRAINT
+		PRIMARY KEY(heroID)
+);
+
+CREATE TABLE Location (
+	locationID INT AUTO_INCREMENT,
+	locationName VARCHAR(30) NOT NULL,
+	locationDescription VARCHAR(50) NOT NULL,
+	locationAddress VARCHAR(50) NOT NULL,
+	latitude INT,
+	longitude INT,
+	CONSTRAINT
+		PRIMARY KEY(locationID)
+);
+
+CREATE TABLE Organization (
+	organizationID INT AUTO_INCREMENT,
+	organizationName VARCHAR(30) NOT NULL,
+	organizationDescription VARCHAR(50) NOT NULL,
+	organizationAddress VARCHAR(50) NOT NULL,
+	CONSTRAINT
+		PRIMARY KEY(organizationID)
+);
+
+CREATE TABLE Superpower(
+	superpowerID INT AUTO_INCREMENT,
+	superpowerName VARCHAR(30) NOT NULL,
+	CONSTRAINT
+		PRIMARY KEY(superpowerID)
+);
+
+CREATE TABLE Sighting (
+	sightingID INT AUTO_INCREMENT,
+	timeStamp DATE,
+	heroID INT,
+	LocationID INT,
+	CONSTRAINT
+		PRIMARY KEY(sightingID),
+	CONSTRAINT fk_Sightings_hero
+		FOREIGN KEY 	(heroID)
+		REFERENCES Hero(heroID),
+	CONSTRAINT fk_Sightings_location
+		FOREIGN KEY (locationID)
+		REFERENCES Location(locationID)
+		
+
+);
+
+CREATE TABLE HeroSuperpower(
+	heroID INT,
+	superpowerID INT,
+	CONSTRAINT pk_superheroPower
+		PRIMARY KEY (heroID, superpowerID),
+	CONSTRAINT fk_HeroSuperpower_hero
+		FOREIGN KEY 	(heroID)
+		REFERENCES Hero(heroID),
+	CONSTRAINT fk_HeroSuperpower__superpower
+		FOREIGN KEY (superpowerID)
+		REFERENCES Superpower(superpowerID)
+);
+CREATE TABLE HeroOrganization(
+	heroID INT,
+	OrganizationID INT,
+	CONSTRAINT pk_superheroOrganization
+		PRIMARY KEY (heroID, organizationID),
+	CONSTRAINT fk_HeroOrganization_hero
+		FOREIGN KEY 	(heroID)
+		REFERENCES Hero(heroID),
+	CONSTRAINT fk_HeroOrganization_organization
+		FOREIGN KEY (organizationID)
+		REFERENCES Organization(organizationID)
+);

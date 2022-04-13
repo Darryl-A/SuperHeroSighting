@@ -90,7 +90,6 @@ public class SuperpowerDaoDB implements SuperpowerDao
     
     public static final class SuperpowerMapper implements RowMapper<Superpower> 
    {
-
         @Override
         public Superpower mapRow(ResultSet rs, int index) throws SQLException 
         {

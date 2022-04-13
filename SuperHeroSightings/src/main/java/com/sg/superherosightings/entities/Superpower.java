@@ -37,29 +37,29 @@ public class Superpower
             return false;
         }
         final Superpower other = (Superpower) obj;
-        if (this.id != other.id) 
+        if (this.superpowerID != other.superpowerID) 
         {
             return false;
         }
-        return Objects.equals(this.name, other.name);
+        return Objects.equals(this.superpowerName, other.superpowerName);
     }
     public int getId() 
     {
-        return id;
+        return superpowerID;
     }
 
     public void setId(int id) 
     {
-        this.id = id;
+        this.superpowerID = id;
     }
 
     public String getName() 
     {
-        return name;
+        return superpowerName;
     }
 
     public void setName(String name) 
     {
-        this.name = name;
+        this.superpowerName = name;
     }
 }

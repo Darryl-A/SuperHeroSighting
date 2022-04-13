@@ -14,6 +14,14 @@ import java.util.Objects;
 public class Hero 
 {
 
+    private int heroID;
+    private String heroName;
+    private String heroDescription;
+    private boolean isHero = true;
+    private List<Superpower> superpowers;
+    private List<Organization> organizations;
+    private List<Sighting> sightings;
+
     @Override
     public int hashCode() 
     {
@@ -117,11 +125,4 @@ public class Hero
     {
         this.sightings = sightings;
     }
-    
-    private int id;
-    private String name;
-    private String description;
-    private List<Superpower> superpowers;
-    private List<Organization> organizations;
-    private List<Sighting> sightings;
 }

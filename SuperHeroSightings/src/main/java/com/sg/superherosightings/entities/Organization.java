@@ -13,6 +13,11 @@ import java.util.Objects;
  */
 public class Organization 
 {
+    private int organizationID;
+    private String organizationName;
+    private String organizationDescription;
+    private String organizationAddress;
+    private List<Hero> heroes;
 
     @Override
     public int hashCode() 
@@ -98,14 +103,7 @@ public class Organization
         return address;
     }
 
-    public void setAddress(String address) 
-    {
+    public void setAddress(String address) {
         this.address = address;
     }
-    
-    private int id;
-    private String name;
-    private String description;
-    private String address; 
-    private List<Hero> heroes;
 }

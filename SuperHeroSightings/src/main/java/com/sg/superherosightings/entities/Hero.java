@@ -125,4 +125,12 @@ public class Hero
     {
         this.sightings = sightings;
     }
+
+    public boolean getHeroStatus(){
+        return this.isHero;
+    }
+
+    public void setHeroStatus(boolean status){
+        this.isHero = status;
+    }
 }

@@ -14,6 +14,14 @@ import java.util.Objects;
 public class Location 
 {
 
+    private int locationID;
+    private String locationName;
+    private String locationDescription;
+    private String locationAddress;
+    private int latitude;
+    private int longitude;
+    private List<Sighting> sightings;
+
     @Override
     public int hashCode() 
     {
@@ -125,12 +133,4 @@ public class Location
     {
         return latitude;
     }
-
-    private int id;
-    private String name;
-    private String description;
-    private String address;
-    private int latitude;
-    private int longitude;
-    private List<Sighting> sightings;
 }

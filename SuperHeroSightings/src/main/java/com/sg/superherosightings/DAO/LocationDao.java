@@ -17,7 +17,7 @@ public interface LocationDao
 {
     Location getLocationById(int id);
     List<Location> getAllLocation();
-    Hero addLocation(Location location);
+    Location addLocation(Location location);
     void updateLocation(Location location);
     void deleteLocationById(int id);
     

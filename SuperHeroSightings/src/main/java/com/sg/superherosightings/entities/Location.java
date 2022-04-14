@@ -79,42 +79,42 @@ public class Location
     public void setSightings(List<Sighting> sightings) {
         this.sightings = sightings;
     }
-    public int getId() 
+    public int getLocationID() 
     {
         return locationID;
     }
 
-    public void setId(int id) 
+    public void setLocationID(int id) 
     {
         this.locationID = id;
     }
 
-    public String getName() 
+    public String getLocationName() 
     {
         return locationName;
     }
 
-    public void setName(String name) 
+    public void setLocationName(String name) 
     {
         this.locationName = name;
     }
 
-    public String getDescription() 
+    public String getLocationDescription() 
     {
         return locationDescription;
     }
 
-    public void setDescription(String description) 
+    public void setLocationDescription(String description) 
     {
         this.locationDescription = description;
     }
 
-    public String getAddress() 
+    public String getLocationAddress() 
     {
         return locationAddress;
     }
 
-    public void setAddress(String address) 
+    public void setLocationAddress(String address) 
     {
         this.locationAddress = address;
     }

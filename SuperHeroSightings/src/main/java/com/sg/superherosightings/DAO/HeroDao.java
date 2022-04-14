@@ -17,13 +17,24 @@ import java.util.List;
  */
 public interface HeroDao 
 {
-    Hero getHeroById(int id);
+    Hero getHeroById(int heroID);
     List<Hero> getAllHeroes();
     Hero addHero(Hero hero);
     void updateHero(Hero hero);
     void deleteHeroById(int id);
     
-    List<Superpower> getSuperpowersForHero(Hero hero);
-    List<Organization> getOrganizationForHero(Hero hero);
-    List<Sighting> getAllSightingsForHero(Hero hero);    
+    void addHeroSuperpowers(Hero hero);
+    void addHeroSightings(Hero hero);
+    void addHeroOrganizations(Hero hero);
+   
+    void assignHeroSuperpowers(List<Hero> heroList);
+    void assignHeroSightings(List<Hero> heroList);
+    void assignHeroOrganizations(List<Hero> heroList);
+    
+    List<Superpower> getSuperpowersForHero(int heroID);
+    List<Organization> getOrganizationForHero(int heroID);
+    List<Sighting> getAllSightingsForHero(int heroID);
+    
+    
+
 }

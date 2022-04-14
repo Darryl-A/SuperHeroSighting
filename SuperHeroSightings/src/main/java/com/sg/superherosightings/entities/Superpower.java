@@ -6,60 +6,58 @@ package com.sg.superherosightings.entities;
 
 import java.util.Objects;
 
+
 /**
  *
  * @author Blasc
  */
 public class Superpower 
 {
-    private int superpowerID;
-    private String superpowerName;
 
     @Override
-    public int hashCode() 
-    {
+    public int hashCode() {
         int hash = 7;
+        hash = 37 * hash + this.superpowerID;
+        hash = 37 * hash + Objects.hashCode(this.superpowerName);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) 
-    {
-        if (this == obj) 
-        {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj == null) 
-        {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) 
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Superpower other = (Superpower) obj;
-        if (this.superpowerID != other.superpowerID) 
-        {
+        if (this.superpowerID != other.superpowerID) {
             return false;
         }
         return Objects.equals(this.superpowerName, other.superpowerName);
     }
-    public int getId() 
+    private int superpowerID;
+    private String superpowerName;
+
+    public int getSuperpowerID() 
     {
         return superpowerID;
     }
 
-    public void setId(int id) 
+    public void setSuperpowerID(int id) 
     {
         this.superpowerID = id;
     }
 
-    public String getName() 
+    public String getSuperpowerName() 
     {
         return superpowerName;
     }
 
-    public void setName(String name) 
+    public void setSuperpowerName(String name) 
     {
         this.superpowerName = name;
     }

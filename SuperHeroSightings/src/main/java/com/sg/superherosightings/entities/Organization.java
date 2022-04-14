@@ -69,41 +69,42 @@ public class Organization
         this.heroes = heroes;
     }
 
-    public int getId() 
+    public int getOrganizationID() 
     {
         return organizationID;
     }
-    public void setId(int id) 
+    public void setOrganizationID(int id) 
     {
         this.organizationID = id;
     }
 
-    public String getName() 
+    public String getOrganizationName() 
     {
         return organizationName;
     }
 
-    public void setName(String name) 
+    public void setOrganizationName(String name) 
     {
         this.organizationName = name;
     }
 
-    public String getDescription() 
+    public String getOrganizationDescription() 
     {
         return organizationDescription;
     }
 
-    public void setDescription(String description) 
+    public void setOrganizationDescription(String description) 
     {
         this.organizationDescription = description;
     }
 
-    public String getAddress() 
+    public String getOrganizationAddress() 
     {
         return organizationAddress;
     }
 
-    public void setAddress(String address) {
+    public void setOrganizationAddress(String address) 
+    {
         this.organizationAddress = address;
     }
 }

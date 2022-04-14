@@ -25,7 +25,13 @@ public class SuperpowerDaoDB implements SuperpowerDao
 {
    @Autowired
    JdbcTemplate jdbc;
+   
+    @Autowired
+    HeroDao heroDao;
     
+    @Autowired
+    HeroDaoDB heroDaoDB;
+   
     @Override
     public Superpower getSuperpowerById(int id) 
     {
@@ -54,10 +60,10 @@ public class SuperpowerDaoDB implements SuperpowerDao
         final String INSERT_SUPERPOWER = "INSERT INTO Superpower(superpowerName)"
         + "VALUES(?)";
         
-        jdbc.update(INSERT_SUPERPOWER, superpower.getName());
+        jdbc.update(INSERT_SUPERPOWER, superpower.getSuperpowerName());
         
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        superpower.setId(newId);
+        superpower.setSuperpowerID(newId);
         return superpower;
     }
 
@@ -67,25 +73,30 @@ public class SuperpowerDaoDB implements SuperpowerDao
         final String UPDATE_SUPERPOWER = "UPDATE SUPERPOWER SET superpowerID"
                 + "WHERE id = ?";
         jdbc.update(UPDATE_SUPERPOWER,
-                superpower.getName(),
-                superpower.getId());
+                superpower.getSuperpowerName(),
+                superpower.getSuperpowerID());
     }
 
     @Override
     @Transactional
-    public void deleteSuperpowerById(int id) 
+    public void deleteSuperpowerById(int superpowerID) 
     {
-        final String DELETE_HERO_SUPERPOWER = "DELETE FROM HeroSuperpower WHERE heroID = ?";
-        jdbc.update(DELETE_HERO_SUPERPOWER, id);
+        final String DELETE_HERO_SUPERPOWER = "DELETE FROM HeroSuperpower WHERE superpowerID = ?";
+        jdbc.update(DELETE_HERO_SUPERPOWER, superpowerID);
         
-        final String DELETE_SUPERPOWER = "DELETE FROM student WHERE id = ?";
-        jdbc.update(DELETE_SUPERPOWER, id);
+        final String DELETE_SUPERPOWER = "DELETE FROM Superpower WHERE superpowerID = ?";
+        jdbc.update(DELETE_SUPERPOWER, superpowerID);
     }
 
     @Override
-    public List<Hero> getHeroWithSuperpowers(Superpower superpower) 
+    public List<Hero> getHeroWithSuperpowers(int superpowerID) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         final String GET_HEROES_WITH_SUPERPOWERS = "SELECT h.* FROM Hero h "
+                + "JOIN HeroSuperpower hSuper ON h.heroID = hSuper.heroID WHERE hSuper.superpowerID = ?";
+        List<Hero> heroes = jdbc.query(GET_HEROES_WITH_SUPERPOWERS, new HeroDaoDB.HeroMapper(), superpowerID);
+        heroDao.assignHeroSuperpowers(heroes);
+        heroDao.assignHeroSightings(heroes);
+        return heroes;
     }
     
     public static final class SuperpowerMapper implements RowMapper<Superpower> 
@@ -94,8 +105,8 @@ public class SuperpowerDaoDB implements SuperpowerDao
         public Superpower mapRow(ResultSet rs, int index) throws SQLException 
         {
             Superpower superpower = new Superpower();
-            superpower.setId(rs.getInt("id"));
-            superpower.setName(rs.getString("name"));
+            superpower.setSuperpowerID(rs.getInt("superpowerID"));
+            superpower.setSuperpowerName(rs.getString("superpowerName"));
             return superpower;
         }
     }

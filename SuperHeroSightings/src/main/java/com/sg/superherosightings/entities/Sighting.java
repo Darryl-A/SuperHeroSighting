@@ -5,6 +5,7 @@
 package com.sg.superherosightings.entities;
 
 import java.security.Timestamp;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Objects;
 public class Sighting 
 {
     private int sightingID;
-    Timestamp sightings;
+    private Date sightingDate;
     private int heroID;
     private int locationID;
     @Override
@@ -22,7 +23,7 @@ public class Sighting
     {
         int hash = 7;
         hash = 61 * hash + this.sightingID;
-        hash = 61 * hash + Objects.hashCode(this.sightings);
+        hash = 61 * hash + Objects.hashCode(this.sightingDate);
         hash = 61 * hash + this.heroID;
         hash = 61 * hash + this.locationID;
         return hash;
@@ -50,7 +51,7 @@ public class Sighting
         if (this.locationID != other.locationID) {
             return false;
         }
-        return Objects.equals(this.sightings, other.sightings);
+        return Objects.equals(this.sightingDate, other.sightingDate);
     }    
     public int getSightingID() 
     {
@@ -62,14 +63,14 @@ public class Sighting
         this.sightingID = id;
     }
 
-    public Timestamp getSightings() 
+    public Date getSightingDate() 
     {
-        return sightings;
+        return sightingDate;
     }
 
-    public void setSightings(Timestamp sightings) 
+    public void setSightingDate(Date sightingDate) 
     {
-        this.sightings = sightings;
+        this.sightingDate = sightingDate;
     }
 
     public int getHeroID() 

@@ -54,14 +54,14 @@ public class LocationDaoDB implements LocationDao
         final String INSERT_LOCATION = "INSERT INTO Location(locationName, locationDescription, locationAddress,latitude,longitude) "
                 + "VALUES(?,?,?,?,?)";
         jdbc.update(INSERT_LOCATION,
-                location.getName(),
-                location.getDescription(),
-                location.getAddress(),
+                location.getLocationName(),
+                location.getLocationDescription(),
+                location.getLocationAddress(),
                 location.getLatitude(),
                 location.getLongitude());
         // Need List for Location
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        location.setId(newId);
+        location.setLocationID(newId);
         return location;
     }
 
@@ -71,12 +71,12 @@ public class LocationDaoDB implements LocationDao
         final String UPDATE_LOCATION = "UPDATE Location SET LocationName = ?, locationDescription = ?, locationAddress = ?, latitude = ?,longitude = ?"
                 + "WHERE id = ?";
         jdbc.update(UPDATE_LOCATION,
-                location.getName(),
-                location.getDescription(),
-                location.getAddress(),
+                location.getLocationName(),
+                location.getLocationDescription(),
+                location.getLocationAddress(),
                 location.getLatitude(),
                 location.getLongitude(),
-                location.getId());
+                location.getLocationID());
     }
 
     @Override
@@ -103,10 +103,10 @@ public class LocationDaoDB implements LocationDao
         public Location mapRow(ResultSet rs, int index) throws SQLException 
         {
             Location location = new Location();
-            location.setId(rs.getInt("id"));
-            location.setName(rs.getString("name"));
-            location.setDescription(rs.getString("description"));
-            location.setAddress(rs.getString("address"));
+            location.setLocationID(rs.getInt("locationID"));
+            location.setLocationName(rs.getString("locationName"));
+            location.setLocationDescription(rs.getString("locationDescription"));
+            location.setLocationAddress(rs.getString("locationAddress"));
             location.setCoordinates(rs.getInt("latitude"), rs.getInt("longitude"));
             return location;
         }

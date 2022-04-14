@@ -38,17 +38,21 @@ public class Hero
     @Override
     public boolean equals(Object obj) 
     {
-        if (this == obj) {
+        if (this == obj) 
+        {
             return true;
         }
-        if (obj == null) {
+        if (obj == null) 
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass()) 
+        {
             return false;
         }
         final Hero other = (Hero) obj;
-        if (this.heroID != other.heroID) {
+        if (this.heroID != other.heroID) 
+        {
             return false;
         }
         if (!Objects.equals(this.heroName, other.heroName)) {
@@ -66,32 +70,32 @@ public class Hero
         return Objects.equals(this.sightings, other.sightings);
     }
 
-    public int getId() 
+    public int getHeroID() 
     {
         return heroID;
     }
 
-    public void setId(int id) 
+    public void setHeroID(int id) 
     {
         this.heroID = id;
     }
 
-    public String getName() 
+    public String getHeroName() 
     {
         return heroName;
     }
 
-    public void setName(String name) 
+    public void setHeroName(String name) 
     {
         this.heroName = name;
     }
 
-    public String getDescription() 
+    public String getHeroDescription() 
     {
         return heroDescription;
     }
 
-    public void setDescription(String description) 
+    public void setHeroDescription(String description) 
     {
         this.heroDescription = description;
     }
@@ -101,36 +105,38 @@ public class Hero
         return superpowers;
     }
 
-    public void setSuperpowers(List<Superpower> superpowers) 
+    public void setHeroSuperpowers(List<Superpower> superpowers) 
     {
         this.superpowers = superpowers;
     }
 
-    public List<Organization> getOrganizations() 
+    public List<Organization> getHeroOrganizations() 
     {
         return organizations;
     }
 
-    public void setOrganizations(List<Organization> organizations) 
+    public void setHeroOrganizations(List<Organization> organizations) 
     {
         this.organizations = organizations;
     }
     
-    public List<Sighting> getSightings() 
+    public List<Sighting> getHeroSightings() 
     {
         return sightings;
     }
 
-    public void setSightings(List<Sighting> sightings) 
+    public void setHeroSightings(List<Sighting> sightings) 
     {
         this.sightings = sightings;
     }
 
-    public boolean getHeroStatus(){
+    public boolean isHero()
+    {
         return this.isHero;
     }
 
-    public void setHeroStatus(boolean status){
+    public void setIsHero(boolean status)
+    {
         this.isHero = status;
     }
 }

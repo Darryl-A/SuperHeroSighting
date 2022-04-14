@@ -41,7 +41,7 @@ CREATE TABLE Superpower(
 
 CREATE TABLE Sighting (
 	sightingID INT AUTO_INCREMENT,
-	timeStamp DATE,
+	sightingDate DATE,
 	heroID INT,
 	LocationID INT,
 	CONSTRAINT

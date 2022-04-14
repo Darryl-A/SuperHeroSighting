@@ -20,5 +20,5 @@ public interface SuperpowerDao
     void updateSuperpower(Superpower superpower);
     void deleteSuperpowerById(int id);
     
-    List<Hero> getHeroWithSuperpowers(Superpower superpower);
+    List<Hero> getHeroWithSuperpowers(int superpowerID);
 }

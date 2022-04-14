@@ -20,6 +20,6 @@ public interface OrganizationDao
     void updateOrganization(Organization organization);
     void deleteOrganizationById(int id);
     
-    List<Hero> getHeroesFromOrganization(Organization organization);
+    List<Hero> getHeroesFromOrganization(int organizationID);
     
 }

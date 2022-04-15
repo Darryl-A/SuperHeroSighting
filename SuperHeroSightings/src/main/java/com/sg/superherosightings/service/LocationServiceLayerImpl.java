@@ -42,7 +42,7 @@ public class LocationServiceLayerImpl implements LocationServiceLayer
     }
 
     @Override
-    public List<Location> getAllLocation() 
+    public List<Location> getAllLocations() 
     {
         return locationDao.getAllLocation();
     }

@@ -70,4 +70,17 @@ public class OrganizationServiceLayerImpl implements OrganizationServiceLayer
     {
         return organizationDao.getHeroesFromOrganization(organizationID);
     }
+
+    @Override
+    public Organization createAnOrganzation(String organizationName, String organizationDescription, List<Hero> heroes, String organizationAddress) 
+    {
+            //Create a new organization
+            Organization o = new Organization();
+            o.setOrganizationName(organizationName);
+            o.setOrganizationDescription(organizationDescription);
+            o.setHeroes(heroes);
+            o.setOrganizationAddress(organizationAddress);
+
+    return o;
+    }
 }

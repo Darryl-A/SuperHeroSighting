@@ -34,7 +34,4 @@ public interface HeroDao
     List<Superpower> getSuperpowersForHero(int heroID);
     List<Organization> getOrganizationForHero(int heroID);
     List<Sighting> getAllSightingsForHero(int heroID);
-    
-    
-
 }

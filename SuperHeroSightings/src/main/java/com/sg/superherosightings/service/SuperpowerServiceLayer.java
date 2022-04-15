@@ -4,10 +4,21 @@
  */
 package com.sg.superherosightings.service;
 
+import com.sg.superherosightings.entities.Hero;
+import com.sg.superherosightings.entities.Superpower;
+import java.util.List;
+
 /**
  *
  * @author Blasc
  */
-public class SuperpowerServiceLayer {
+public interface SuperpowerServiceLayer 
+{
+    Superpower getSuperpowerById(int id);
+    List<Superpower> getAllSuperpowers();
+    Superpower addSuperpower(Superpower superpower);
+    void updateSuperpower(Superpower superpower);
+    void deleteSuperpowerById(int id);
     
+    List<Hero> getHeroWithSuperpowers(int superpowerID);
 }

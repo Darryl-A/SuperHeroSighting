@@ -4,8 +4,7 @@
  */
 package com.sg.superherosightings.entities;
 
-import java.security.Timestamp;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Objects;
 public class Sighting 
 {
     private int sightingID;
-    private Date sightingDate;
+    private LocalDate sightingDate;
     private int heroID;
     private int locationID;
     @Override
@@ -63,12 +62,12 @@ public class Sighting
         this.sightingID = id;
     }
 
-    public Date getSightingDate() 
+    public LocalDate getSightingDate() 
     {
         return sightingDate;
     }
 
-    public void setSightingDate(Date sightingDate) 
+    public void setSightingDate(LocalDate sightingDate) 
     {
         this.sightingDate = sightingDate;
     }

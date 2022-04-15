@@ -21,4 +21,5 @@ public interface SuperpowerDao
     void deleteSuperpowerById(int id);
     
     List<Hero> getHeroWithSuperpowers(int superpowerID);
+    
 }

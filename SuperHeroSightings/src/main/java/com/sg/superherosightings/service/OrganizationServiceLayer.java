@@ -4,11 +4,21 @@
  */
 package com.sg.superherosightings.service;
 
+import com.sg.superherosightings.entities.Hero;
+import com.sg.superherosightings.entities.Organization;
+import java.util.List;
+
 /**
  *
  * @author Blasc
  */
-public class OrganizationServiceLayer 
+public interface OrganizationServiceLayer 
 {
+    Organization getOrganizationById(int id);
+    List<Organization> getAllOrganizations();
+    Organization addOrganization(Organization organization);
+    void updateOrganization(Organization organization);
+    void deleteOrganizationById(int id);
     
+    List<Hero> getHeroesFromOrganization(int organizationID);
 }

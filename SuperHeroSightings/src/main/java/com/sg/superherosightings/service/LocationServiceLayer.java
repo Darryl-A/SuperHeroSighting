@@ -4,10 +4,21 @@
  */
 package com.sg.superherosightings.service;
 
+import com.sg.superherosightings.entities.Location;
+import com.sg.superherosightings.entities.Sighting;
+import java.util.List;
+
 /**
  *
  * @author Blasc
  */
-public class LocationServiceLayer {
+public interface LocationServiceLayer 
+{
+    Location getLocationById(int id);
+    List<Location> getAllLocations();
+    Location addLocation(Location location);
+    void updateLocation(Location location);
+    void deleteLocationById(int id);
     
+    List<Sighting> getAllSightingsForLocation(Location location);
 }

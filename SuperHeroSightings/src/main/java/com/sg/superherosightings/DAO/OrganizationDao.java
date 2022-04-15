@@ -21,5 +21,4 @@ public interface OrganizationDao
     void deleteOrganizationById(int id);
     
     List<Hero> getHeroesFromOrganization(int organizationID);
-    
 }

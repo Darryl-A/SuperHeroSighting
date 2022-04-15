@@ -8,6 +8,7 @@ import com.sg.superherosightings.entities.Superpower;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -124,7 +125,7 @@ public class SightingDaoDB implements SightingDao
         {
             Sighting sighting = new Sighting();
             sighting.setSightingID(rs.getInt("sightingID"));
-            sighting.setSightingDate(Date.valueOf(rs.getDate("Date").toString()));
+            sighting.setSightingDate(LocalDate.parse(rs.getDate("Date").toString()));
             sighting.setHeroID(rs.getInt("heroID"));
             sighting.setLocationID(rs.getInt("locationID"));
             return sighting;

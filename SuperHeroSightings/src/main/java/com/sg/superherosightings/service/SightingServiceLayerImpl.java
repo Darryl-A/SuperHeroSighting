@@ -11,6 +11,8 @@ import com.sg.superherosightings.DAO.SightingDao;
 import com.sg.superherosightings.DAO.SuperpowerDao;
 import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Sighting;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,7 +38,7 @@ public class SightingServiceLayerImpl implements SightingServiceLayer
     SuperpowerDao superpowerDao;
 
     @Override
-    public Sighting getSightingByID(int sightingID) 
+    public Sighting getSightingById(int sightingID) 
     {
         return sightingDao.getSightingByID(sightingID);
     }
@@ -69,5 +71,15 @@ public class SightingServiceLayerImpl implements SightingServiceLayer
     public List<Hero> getHeroFromSighting(int sightingID) 
     {
         return sightingDao.getHeroFromSighting(sightingID);
+    }
+
+    @Override
+    public Sighting createSighting(int heroID, int locationID, LocalDate date) 
+    {
+        Sighting s  = new Sighting();
+        s.setLocationID(locationID);
+        s.setHeroID(heroID);
+        s.setSightingDate(date);
+        return s;
     }
 }

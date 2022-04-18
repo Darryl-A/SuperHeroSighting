@@ -27,14 +27,14 @@ public class SightingDaoDB implements SightingDao
     @Autowired
     JdbcTemplate jdbc;
 
-    @Autowired
-    HeroDao heroDao;
-
-    @Autowired
-    LocationDao locationDao;
-
-    @Autowired
-    LocationDaoDB locationDaoDB;
+//    @Autowired
+//    HeroDao heroDao;
+//
+//    @Autowired
+//    LocationDao locationDao;
+//
+//    @Autowired
+//    LocationDaoDB locationDaoDB;
 
     @Override
     public Sighting getSightingByID(int sightingID)

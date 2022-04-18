@@ -7,9 +7,7 @@ package com.sg.superherosightings.Controller;
 import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Location;
 import com.sg.superherosightings.entities.Sighting;
-import com.sg.superherosightings.service.HeroServiceLayer;
-import com.sg.superherosightings.service.LocationServiceLayer;
-import com.sg.superherosightings.service.SightingServiceLayer;
+import com.sg.superherosightings.service.ServiceLayer;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,23 +24,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class SightingController 
 {
-    private SightingServiceLayer sightingServiceLayer;
-    private HeroServiceLayer heroServiceLayer;
-    private LocationServiceLayer locationServiceLayer;
-    
-    public SightingController(SightingServiceLayer sightingServiceLayer, HeroServiceLayer heroServiceLayer, LocationServiceLayer locationServiceLayer) 
-    {
-        this.sightingServiceLayer = sightingServiceLayer;
-        this.heroServiceLayer = heroServiceLayer;
-        this.locationServiceLayer = locationServiceLayer;
+
+    public SightingController(ServiceLayer serviceLayer) {
+        this.serviceLayer = serviceLayer;
     }
+    private final ServiceLayer serviceLayer;
+    
    
      @GetMapping("sightings")
     public String displayCourses(Model model) 
     {
-        List<Sighting> sightings = sightingServiceLayer.getAllSightings();
-        List<Hero> heroes = heroServiceLayer.getAllHeroes();
-        List<Location> locations = locationServiceLayer.getAllLocations();
+        List<Sighting> sightings = serviceLayer.getAllSightings();
+        List<Hero> heroes = serviceLayer.getAllHeroes();
+        List<Location> locations = serviceLayer.getAllLocations();
         model.addAttribute("courses", sightings);
         model.addAttribute("teachers", heroes);
         model.addAttribute("students", locations);
@@ -58,10 +52,10 @@ public class SightingController
         String stringDate = request.getParameter("sightingDate");
         LocalDate date = LocalDate.parse(stringDate);
         
-        sighting = sightingServiceLayer.createSighting(heroID,locationID,date);
+        sighting = serviceLayer.createSighting(heroID,locationID,date);
         
 
-        sightingServiceLayer.addSighting(sighting);
+        serviceLayer.addSighting(sighting);
 
         return "redirect:/sightings";
     }
@@ -69,7 +63,7 @@ public class SightingController
     @GetMapping("sightingDetail")
     public String sightingDetail(Integer id, Model model) 
     {
-        Sighting sighting = sightingServiceLayer.getSightingById(id);
+        Sighting sighting = serviceLayer.getSightingById(id);
         model.addAttribute("sighting", sighting);
         return "sightingDetail";
     }
@@ -77,16 +71,16 @@ public class SightingController
      @GetMapping("deleteSighting")
     public String deleteSighting(Integer id) 
     {
-        sightingServiceLayer.deleteSightingById(id);
+        serviceLayer.deleteSightingById(id);
         return "redirect:/sightings";
     }
     
     @GetMapping("editSighting")
     public String editSighting(Integer id, Model model) 
     {
-        Sighting sightings = sightingServiceLayer.getSightingById(id);
-        List<Hero> heroes = heroServiceLayer.getAllHeroes();
-        List<Location> locations = locationServiceLayer.getAllLocations();
+        Sighting sightings = serviceLayer.getSightingById(id);
+        List<Hero> heroes = serviceLayer.getAllHeroes();
+        List<Location> locations = serviceLayer.getAllLocations();
         model.addAttribute("sightings", sightings);
         model.addAttribute("heroes", heroes);
         model.addAttribute("locations", locations);
@@ -102,9 +96,9 @@ public class SightingController
         String stringDate = request.getParameter("sightingDate");
         LocalDate date = LocalDate.parse(stringDate);
         
-        sighting = sightingServiceLayer.createSighting(heroID,locationID,date);
+        sighting = serviceLayer.createSighting(heroID,locationID,date);
         
-        sightingServiceLayer.updateSighting(sighting);
+        serviceLayer.updateSighting(sighting);
         return "redirect:/sightings";
     }
 }

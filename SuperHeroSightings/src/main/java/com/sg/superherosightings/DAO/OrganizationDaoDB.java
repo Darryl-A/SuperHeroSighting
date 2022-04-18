@@ -29,9 +29,9 @@ public class OrganizationDaoDB implements OrganizationDao
 
     @Autowired
     HeroDao heroDao;
-
-    @Autowired
-    LocationDao locationDao;
+//
+//    @Autowired
+//    LocationDao locationDao;
     
     /**
      * Gets an organization based on ID.

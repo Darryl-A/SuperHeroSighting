@@ -13,27 +13,35 @@ import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Organization;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Blasc
  */
+@Component
 public class OrganizationServiceLayerImpl implements OrganizationServiceLayer 
 {
-    @Autowired 
-    HeroDao heroDao;
-    
-    @Autowired
-    LocationDao locationDao;
+//    @Autowired 
+//    HeroDao heroDao;
+//    
+//    @Autowired
+//    LocationDao locationDao;
     
     @Autowired 
     OrganizationDao organizationDao;
-    
-    @Autowired 
-    SightingDao sightingDao;
-    
-    @Autowired
-    SuperpowerDao superpowerDao;
+//    
+//    @Autowired 
+//    SightingDao sightingDao;
+//    
+//    @Autowired
+//    SuperpowerDao superpowerDao;
+
+    public OrganizationServiceLayerImpl(@Lazy OrganizationDao organizationDao) 
+    {
+        this.organizationDao = organizationDao;
+    }
 
     @Override
     public Organization getOrganizationById(int id) 

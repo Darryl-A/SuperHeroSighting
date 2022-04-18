@@ -13,28 +13,35 @@ import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Superpower;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Blasc
  */
+@Component
 public class SuperpowerServiceLayerImpl implements SuperpowerServiceLayer
 {
-    @Autowired 
-    HeroDao heroDao;
-    
-    @Autowired
-    LocationDao locationDao;
-    
-    @Autowired 
-    OrganizationDao organizationDao;
-    
-    @Autowired 
-    SightingDao sightingDao;
-    
+
+//    @Autowired 
+//    HeroDao heroDao;
+//    
+//    @Autowired
+//    LocationDao locationDao;
+//    
+//    @Autowired 
+//    OrganizationDao organizationDao;
+//    
+//    @Autowired 
+//    SightingDao sightingDao;
     @Autowired
     SuperpowerDao superpowerDao;
-    
+
+    public SuperpowerServiceLayerImpl(@Lazy SuperpowerDao superpowerDao) 
+    {
+        this.superpowerDao = superpowerDao;
+    }    
     
     @Override
     public Superpower getSuperpowerById(int id) 

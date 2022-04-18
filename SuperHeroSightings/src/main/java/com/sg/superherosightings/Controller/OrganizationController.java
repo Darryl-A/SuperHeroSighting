@@ -27,7 +27,8 @@ public class OrganizationController
     private final HeroServiceLayer hs;
 
     //Controller for the organization 
-    public OrganizationController(OrganizationServiceLayer osl, HeroServiceLayer hs){
+    public OrganizationController(OrganizationServiceLayer osl, HeroServiceLayer hs)
+    {
         this.osl = osl;
         this.hs = hs;
     }
@@ -38,7 +39,8 @@ public class OrganizationController
      * @return
      */
     @GetMapping("organizations")
-    public String displayOrganizations(Model model){
+    public String displayOrganizations(Model model)
+    {
         List<Organization> organizations = osl.getAllOrganizations();
         model.addAttribute("organizations", organizations);
         return "organizations";
@@ -78,7 +80,7 @@ public class OrganizationController
      * @return
      */
     @GetMapping("editOrganization")
-    public String editTeacher(HttpServletRequest request, Model model) 
+    public String editOrganization(HttpServletRequest request, Model model) 
     {
         int organizationID = Integer.parseInt(request.getParameter("organizationID"));
         Organization organization = osl.getOrganizationById(organizationID);
@@ -96,7 +98,7 @@ public class OrganizationController
      * @return
      */
     @PostMapping("editOrganization")
-    public String editOrganization(Model mode, HttpServletRequest request){
+    public String performEditOrganization(Model mode, HttpServletRequest request){
         
         int organizationID = Integer.parseInt(request.getParameter("organizationID"));
         String organizationName = request.getParameter("organizationName");

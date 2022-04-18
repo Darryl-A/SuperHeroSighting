@@ -15,28 +15,36 @@ import com.sg.superherosightings.entities.Sighting;
 import com.sg.superherosightings.entities.Superpower;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Blasc
  */
+@Component
 public class HeroServiceLayerImpl implements HeroServiceLayer 
 {
+
     @Autowired 
     HeroDao heroDao;
     
-    @Autowired
-    LocationDao locationDao;
+//    @Autowired
+//    LocationDao locationDao;
+//    
+//    @Autowired 
+//    OrganizationDao organizationDao;
+//    
+//    @Autowired 
+//    SightingDao sightingDao;
+//    
+//    @Autowired
+//    SuperpowerDao superpowerDao;
+    public HeroServiceLayerImpl(@Lazy HeroDao heroDao) 
+    {
+        this.heroDao = heroDao;
+    }
     
-    @Autowired 
-    OrganizationDao organizationDao;
-    
-    @Autowired 
-    SightingDao sightingDao;
-    
-    @Autowired
-    SuperpowerDao superpowerDao;
-
     @Override
     public Hero getHeroById(int heroID) 
     {
@@ -120,4 +128,15 @@ public class HeroServiceLayerImpl implements HeroServiceLayer
     {
         return heroDao.getAllSightingsForHero(heroID);
     }
+
+    @Override
+    public Hero createHero(String heroName, boolean isHero, List<Superpower> superpowers, List<Organization> organizations)
+        {
+            Hero hero = new Hero();
+            hero.setHeroName(heroName);
+            hero.setIsHero(isHero);
+            hero.setHeroSuperpowers(superpowers);
+            hero.setHeroOrganizations(organizations);
+            return hero;
+        }
 }

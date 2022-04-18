@@ -21,4 +21,6 @@ public interface LocationServiceLayer
     void deleteLocationById(int id);
     
     List<Sighting> getAllSightingsForLocation(Location location);
+
+    public Location createLocation(String locationName, String locaitonDescription, String locationAddress, double locationLongitude, double locationLatitude);
 }

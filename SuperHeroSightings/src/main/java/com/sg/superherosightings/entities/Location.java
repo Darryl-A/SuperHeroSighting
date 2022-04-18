@@ -18,58 +18,9 @@ public class Location
     private String locationName;
     private String locationDescription;
     private String locationAddress;
-    private int latitude;
-    private int longitude;
+    private double latitude;
+    private double longitude;
     private List<Sighting> sightings;
-
-    @Override
-    public int hashCode() 
-    {
-        int hash = 3;
-        hash = 37 * hash + this.locationID;
-        hash = 37 * hash + Objects.hashCode(this.locationName);
-        hash = 37 * hash + Objects.hashCode(this.locationDescription);
-        hash = 37 * hash + Objects.hashCode(this.locationAddress);
-        hash = 37 * hash + this.latitude;
-        hash = 37 * hash + this.longitude;
-        hash = 37 * hash + Objects.hashCode(this.sightings);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) 
-    {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) 
-        {
-            return false;
-        }
-        final Location other = (Location) obj;
-        if (this.locationID != other.locationID) {
-            return false;
-        }
-        if (this.latitude != other.latitude) {
-            return false;
-        }
-        if (this.longitude != other.longitude) {
-            return false;
-        }
-        if (!Objects.equals(this.locationName, other.locationName)) {
-            return false;
-        }
-        if (!Objects.equals(this.locationDescription, other.locationDescription)) {
-            return false;
-        }
-        if (!Objects.equals(this.locationAddress, other.locationAddress)) {
-            return false;
-        }
-        return Objects.equals(this.sightings, other.sightings);
-    }
 
     public List<Sighting> getSightings() 
     {
@@ -119,17 +70,17 @@ public class Location
         this.locationAddress = address;
     }
 
-    public void setCoordinates(int latitude, int longitude) 
+    public void setCoordinates(double latitude, double longitude) 
     {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public int getLongitude() 
+    public double getLongitude() 
     {
         return longitude;
     }
-    public int getLatitude() 
+    public double getLatitude() 
     {
         return latitude;
     }

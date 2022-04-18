@@ -15,28 +15,37 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Blasc
  */
+@Component
 public class SightingServiceLayerImpl implements SightingServiceLayer 
 {
-    @Autowired 
-    HeroDao heroDao;
-    
-    @Autowired
-    LocationDao locationDao;
-    
-    @Autowired 
-    OrganizationDao organizationDao;
-    
+
+
+//    @Autowired 
+//    HeroDao heroDao;
+//    
+//    @Autowired
+//    LocationDao locationDao;
+//    
+//    @Autowired 
+//    OrganizationDao organizationDao;
+
     @Autowired 
     SightingDao sightingDao;
     
-    @Autowired
-    SuperpowerDao superpowerDao;
+//    @Autowired
+//    SuperpowerDao superpowerDao;
 
+    public SightingServiceLayerImpl(@Lazy SightingDao sightingDao) 
+    {
+        this.sightingDao = sightingDao;
+    }
     @Override
     public Sighting getSightingById(int sightingID) 
     {

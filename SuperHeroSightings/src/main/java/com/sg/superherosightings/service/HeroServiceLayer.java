@@ -33,4 +33,6 @@ public interface HeroServiceLayer
     List<Superpower> getSuperpowersForHero(int heroID);
     List<Organization> getOrganizationForHero(int heroID);
     List<Sighting> getAllSightingsForHero(int heroID);
+
+    public Hero createHero(String heroName, boolean hero, List<Superpower> superpowers, List<Organization> organizations);
 }

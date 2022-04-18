@@ -37,8 +37,6 @@ public class SightingController
         this.locationServiceLayer = locationServiceLayer;
     }
    
-
-    
      @GetMapping("sightings")
     public String displayCourses(Model model) 
     {

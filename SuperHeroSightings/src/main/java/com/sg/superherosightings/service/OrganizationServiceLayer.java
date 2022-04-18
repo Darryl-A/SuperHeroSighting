@@ -21,4 +21,6 @@ public interface OrganizationServiceLayer
     void deleteOrganizationById(int id);
     
     List<Hero> getHeroesFromOrganization(int organizationID);
+
+    public Organization createAnOrganzation(String organizationName, String organizationDescription, List<Hero> Hero, String organizationAddress);
 }

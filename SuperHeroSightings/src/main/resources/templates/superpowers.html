@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Superhero Sighting</title>
+    <title>Superpowers</title>
   </head>
   <body>
     <!-- Main Body of Page -->
@@ -27,7 +27,7 @@
           <h1><a href="/" class="text-dark">SUPERPOWERS</a></h1>
         </div>
       </div>
-            <div class="row m-4 border border-dark">
+              <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
           <a href="/" class="btn btn-outline-secondary btn-md">HOME</a>
         </div>
@@ -62,9 +62,9 @@
         <div class="col-7 text-center m-3">
           <form action="addSuperpower" method="POST">
             <div class="form-group row">
-              <label for="name" class="col-3 col-form-label"> Name</label>
+              <label for="superpowerName" class="col-3 col-form-label"> Name</label>
               <div class="col-9">
-                <input type="text" name="name" id="name" class="form-control" />
+                <input type="text" name="superpowerName" id="name" class="form-control" />
               </div>
             </div>
             <button type="submit" class="btn btn-primary">
@@ -90,15 +90,15 @@
                 <td th:text="${superpower.superpowerID}">Superpower ID</td>
                 <td th:text="${superpower.superpowerName}">Superpower Name</td>
                 <td>
-                  <a href="#" th:href="@{/courseDetail(id=${course.id})}"
+                  <a href="#" th:href="@{/infoSuperpower(id=${superpower.superpowerID})}"
                     >Details</a
                   >
                 </td>
                 <td>
-                  <a href="#" th:href="@{/editCourse(id=${course.id})}">Edit</a>
+                  <a href="#" th:href="@{/editSuperpower(id=${superpower.superpowerID})}">Edit</a>
                 </td>
                 <td>
-                  <a href="#" th:href="@{/deleteCourse(id=${course.id})}"
+                  <a href="#" th:href="@{/deleteSuperpower(id=${superpower.superpowerID})}"
                     >Delete</a
                   >
                 </td>

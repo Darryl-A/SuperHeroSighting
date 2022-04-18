@@ -127,4 +127,16 @@ public class OrganizationController
         serviceLayer.deleteOrganizationById(id);
         return "redirect:/organizations";
     }
+    
+    @GetMapping("infoOrganization")
+    public String infoOrganization(HttpServletRequest request, Model model)
+    {
+        int organizationID = Integer.parseInt(request.getParameter("organizationID"));
+
+        Organization organization = serviceLayer.getOrganizationById(organizationID);
+        model.addAttribute("organization", organization);
+
+        return "infoOrganization";
+    }
+
 }

@@ -5,6 +5,7 @@
 package com.sg.superherosightings.Controller;
 
 import com.sg.superherosightings.entities.Hero;
+import com.sg.superherosightings.entities.Location;
 import com.sg.superherosightings.entities.Organization;
 import com.sg.superherosightings.entities.Superpower;
 import com.sg.superherosightings.service.ServiceLayer;
@@ -128,7 +129,8 @@ public class HeroController
     }
 
     @GetMapping("infoHero")
-    public String infoHero(HttpServletRequest request, Model model){
+    public String infoHero(HttpServletRequest request, Model model)
+    {
         int heroID = Integer.parseInt(request.getParameter("heroID"));
 
         Hero hero = serviceLayer.getHeroById(heroID);
@@ -143,4 +145,19 @@ public class HeroController
 
         return "infoHero";
     }
+    
+    @GetMapping("infoLocation")
+    public String infoLocation(HttpServletRequest request, Model model)
+    {
+    int locationID = Integer.parseInt(request.getParameter("locationID"));
+    int sightingID = Integer.parseInt(request.getParameter("sightingID"));
+    Location location = serviceLayer.getLocationById(locationID);
+    model.addAttribute("location", location);
+
+    List<Hero> heroes = serviceLayer.getHeroFromSighting(sightingID);
+    model.addAttribute("heroes", heroes);
+
+    return "detailsLocation";
+    }
+        //// ------ ///////
 }

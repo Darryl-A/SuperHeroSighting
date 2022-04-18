@@ -4,9 +4,11 @@
  */
 package com.sg.superherosightings.Controller;
 
+import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Superpower;
 import com.sg.superherosightings.service.ServiceLayer;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,4 +65,17 @@ public class SuperpowerController
         serviceLayer.updateSuperpower(superpower);
         return "redirect:/superpowers";
     }
+    @GetMapping("infoSuperpower")
+    public String infoSuperpower(HttpServletRequest request, Model model)
+    {
+        int superpowerID = Integer.parseInt(request.getParameter("superpowerID"));
+
+        Superpower superpower = serviceLayer.getSuperpowerById(superpowerID);
+        model.addAttribute("superpower", superpower);
+
+        List<Hero> heroes = serviceLayer.getHeroWithSuperpowers(superpowerID);
+        model.addAttribute("heroes", heroes);
+
+        return "infoSuperpower";
+        }
 }

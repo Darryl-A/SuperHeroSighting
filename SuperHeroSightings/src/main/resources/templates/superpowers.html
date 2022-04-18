@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Superpower Sighting</title>
+    <title>Superhero Sighting</title>
   </head>
   <body>
     <!-- Main Body of Page -->
@@ -24,12 +24,12 @@
     <div class="container">
       <div class="row m-4">
         <div class="col text-center border border-dark">
-          <h1><a href="/" class="text-dark">ORGANIZATIONS</a></h1>
+          <h1><a href="/" class="text-dark">SUPERPOWERS</a></h1>
         </div>
       </div>
-      <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-          <a href="index.html" class="btn btn-outline-secondary btn-md">HOME</a>
+          <a href="/" class="btn btn-outline-secondary btn-md">HOME</a>
         </div>
         <div class="col text-center m-3">
           <a href="heroes" class="btn btn-outline-secondary btn-md">HEROES</a>
@@ -40,12 +40,12 @@
           >
         </div>
         <div class="col text-center m-3">
-          <a href="locations" class="btn btn-outline-secondary btn-md"
-            >LOCATION</a
+          <a href="locations" class="btn btn-outline-primary btn-md"
+            >LOCATIONS</a
           >
         </div>
         <div class="col text-center m-3">
-          <a href="organizations" class="btn btn-outline-primary btn-md"
+          <a href="organizations" class="btn btn-outline-secondary btn-md"
             >ORGANIZATION</a
           >
         </div>
@@ -57,71 +57,18 @@
       </div>
       <div class="row m-4 border border-dark">
         <div class="col-3 text-center m-3">
-          <span class="h3">Add Organization</span>
+          <span class="h4">ADD SUPERPOWER</span>
         </div>
         <div class="col-7 text-center m-3">
-          <form action="addOrganization" method="POST">
+          <form action="addSuperpower" method="POST">
             <div class="form-group row">
               <label for="name" class="col-3 col-form-label"> Name</label>
               <div class="col-9">
                 <input type="text" name="name" id="name" class="form-control" />
               </div>
             </div>
-
-            <div class="form-group row">
-              <label for="description" class="col-3 col-form-label">
-                Description</label
-              >
-              <div class="col-9">
-                <input
-                  type="text"
-                  name="description"
-                  id="description"
-                  class="form-control"
-                />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="address" class="col-3 col-form-label"> Address</label>
-              <div class="col-9">
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  class="form-control"
-                />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="isHero" class="col-3 col-form-label">
-                Hero Type</label
-              >
-              <div class="col-9">
-                <select id="isHero" name="isHero" class="form-control">
-                  <option value="true">Superhero</option>
-                  <option value="false">Supervillain</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="members" class="col-3 col-form-label"> Members</label>
-              <div class="col-9">
-                <select multiple id="heroID" name="heroID" class="form-control">
-                  <option
-                    th:each="hero : ${heroes}"
-                    th:value="${hero.heroID}"
-                    th:text="${hero.heroName}"
-                  >
-                    Hero name
-                  </option>
-                </select>
-              </div>
-            </div>
             <button type="submit" class="btn btn-primary">
-              Add Organization
+              Add Superpower
             </button>
           </form>
         </div>
@@ -139,27 +86,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="organization : ${organizations}">
-                <td th:text="${organization.organizationID}">ID</td>
-                <td th:text="${organization.organizationName}">Name</td>
+              <tr th:each="superpower : ${superpowers}">
+                <td th:text="${superpower.superpowerID}">Superpower ID</td>
+                <td th:text="${superpower.superpowerName}">Superpower Name</td>
                 <td>
-                  <a
-                    href="#"
-                    th:href="@{/infoOrganization(id=${organization.organizationID})}"
+                  <a href="#" th:href="@{/courseDetail(id=${course.id})}"
                     >Details</a
                   >
                 </td>
                 <td>
-                  <a
-                    href="#"
-                    th:href="@{/editOrganization(id=${organization.organizationID})}"
-                    >Edit</a
-                  >
+                  <a href="#" th:href="@{/editCourse(id=${course.id})}">Edit</a>
                 </td>
                 <td>
-                  <a
-                    href="#"
-                    th:href="@{/deleteOrganization(id=${organization.organizationID})}"
+                  <a href="#" th:href="@{/deleteCourse(id=${course.id})}"
                     >Delete</a
                   >
                 </td>

@@ -27,6 +27,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class HeroController 
 {
     private ServiceLayer serviceLayer;
+
+    public HeroController(ServiceLayer serviceLayer) 
+    {
+        this.serviceLayer = serviceLayer;
+    }
     /**
      * Displays all the heroes
      **/

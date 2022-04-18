@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Superpower Sighting</title>
+    <title>Heroes</title>
   </head>
   <body>
     <!-- Main Body of Page -->
@@ -24,12 +24,12 @@
     <div class="container">
       <div class="row m-4">
         <div class="col text-center border border-dark">
-          <h1><a href="/" class="text-dark">ORGANIZATIONS</a></h1>
+          <h1><a href="/" class="text-dark">HEROES</a></h1>
         </div>
       </div>
-         <div class="row m-4 border border-dark">
+      <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-          <a href="/" class="btn btn-outline-secondary btn-md">HOME</a>
+          <a href="index.html" class="btn btn-outline-secondary btn-md">HOME</a>
         </div>
         <div class="col text-center m-3">
           <a href="heroes" class="btn btn-outline-secondary btn-md">HEROES</a>
@@ -40,12 +40,12 @@
           >
         </div>
         <div class="col text-center m-3">
-          <a href="locations" class="btn btn-outline-primary btn-md"
-            >LOCATIONS</a
+          <a href="locations" class="btn btn-outline-secondary btn-md"
+            >LOCATION</a
           >
         </div>
         <div class="col text-center m-3">
-          <a href="organizations" class="btn btn-outline-secondary btn-md"
+          <a href="organizations" class="btn btn-outline-primary btn-md"
             >ORGANIZATION</a
           >
         </div>
@@ -57,38 +57,31 @@
       </div>
       <div class="row m-4 border border-dark">
         <div class="col-3 text-center m-3">
-          <span class="h3">Add Organization</span>
+          <span class="h3">Add Hero</span>
         </div>
         <div class="col-7 text-center m-3">
-          <form action="addOrganization" method="POST">
+          <form action="performAddHero" method="POST">
             <div class="form-group row">
-              <label for="name" class="col-3 col-form-label"> Name</label>
-              <div class="col-9">
-                <input type="text" name="name" id="name" class="form-control" />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="description" class="col-3 col-form-label">
-                Description</label
-              >
+              <label for="heroName" class="col-3 col-form-label"> Name</label>
               <div class="col-9">
                 <input
                   type="text"
-                  name="description"
-                  id="description"
+                  name="heroName"
+                  id="heroName"
                   class="form-control"
                 />
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="address" class="col-3 col-form-label"> Address</label>
+              <label for="heroDescription" class="col-3 col-form-label">
+                Description</label
+              >
               <div class="col-9">
                 <input
                   type="text"
-                  name="address"
-                  id="address"
+                  name="heroDescription"
+                  id="heroDescription"
                   class="form-control"
                 />
               </div>
@@ -107,22 +100,49 @@
             </div>
 
             <div class="form-group row">
-              <label for="members" class="col-3 col-form-label"> Members</label>
+              <label for="superpowerID" class="col-3 col-form-label">
+                Superpowers</label
+              >
               <div class="col-9">
-                <select multiple id="heroID" name="heroID" class="form-control">
+                <select
+                  multiple
+                  id="superpowerID"
+                  name="superpowerID"
+                  class="form-control"
+                >
                   <option
-                    th:each="hero : ${heroes}"
-                    th:value="${hero.heroID}"
-                    th:text="${hero.heroName}"
+                    th:each="superpower : ${superpowers}"
+                    th:value="${superpower.superpowerID}"
+                    th:text="${superpower.superpowerID}"
                   >
-                    Hero name
+                    Superpower Name
                   </option>
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">
-              Add Organization
-            </button>
+
+            <div class="form-group row">
+              <label for="organizationID" class="col-3 col-form-label">
+                Organizations</label
+              >
+              <div class="col-9">
+                <select
+                  multiple
+                  id="organizationID"
+                  name="organizationID"
+                  class="form-control"
+                >
+                  <option
+                    th:each="organization : ${organizations}"
+                    th:value="${organization .organization ID}"
+                    th:text="${organization .organization Name}"
+                  >
+                    Organization Name
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Hero</button>
           </form>
         </div>
       </div>
@@ -139,27 +159,29 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="organization : ${organizations}">
-                <td th:text="${organization.organizationID}">ID</td>
-                <td th:text="${organization.organizationName}">Name</td>
+              <tr th:each="hero : ${heroes}">
+                <td th:text="${hero.heroID}">ID</td>
+                <td th:text="${hero.heroName}">Name</td>
+                <td th:if="${hero.isHero}">Superhero</td>
+                <td th:unless="${hero.isHero}">Supervillain</td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/infoOrganization(id=${organization.organizationID})}"
+                    th:href="@{/infoHero(id=${hero.heroID})}"
                     >Details</a
                   >
                 </td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/editOrganization(id=${organization.organizationID})}"
+                    th:href="@{/editHero(id=${hero.heroID})}"
                     >Edit</a
                   >
                 </td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/deleteOrganization(id=${organization.organizationID})}"
+                    th:href="@{/deleteHero(id=${hero.heroID})}"
                     >Delete</a
                   >
                 </td>

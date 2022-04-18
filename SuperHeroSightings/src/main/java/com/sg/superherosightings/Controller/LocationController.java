@@ -5,7 +5,7 @@
 package com.sg.superherosightings.Controller;
 
 import com.sg.superherosightings.entities.Location;
-import com.sg.superherosightings.service.LocationServiceLayer;
+import com.sg.superherosightings.service.ServiceLayer;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LocationController
 {
-    
-    private final LocationServiceLayer lsl;
-    public LocationController(LocationServiceLayer lsl)
-    {
-        this.lsl = lsl;
+
+    public LocationController(ServiceLayer serviceLayer) {
+        this.serviceLayer = serviceLayer;
     }
+    
+    private final ServiceLayer serviceLayer;
 
 
     @GetMapping("locations")
     public String displayLocations(Model model)
     {
-        List<Location> locations = lsl.getAllLocations();
+        List<Location> locations = serviceLayer.getAllLocations();
         model.addAttribute("locations", locations);
         return "locations";
     }
@@ -58,8 +58,8 @@ public class LocationController
         double locationLatitude = Double.parseDouble(stringLocationLatitude);
 
         //Add the location
-        Location location = lsl.createLocation(locationName,locaitonDescription,locationAddress,locationLongitude,locationLatitude);
-        lsl.addLocation(location);
+        Location location = serviceLayer.createLocation(locationName,locaitonDescription,locationAddress,locationLongitude,locationLatitude);
+        serviceLayer.addLocation(location);
 
         return "redirect:/locations";
     }
@@ -68,7 +68,7 @@ public class LocationController
     public String editLocation(Model model, HttpServletRequest request)
     {
         int locationID = Integer.parseInt(request.getParameter("locationID"));
-        Location location = lsl.getLocationById(locationID);
+        Location location = serviceLayer.getLocationById(locationID);
         
         model.addAttribute("location", location);
         return "editLocation";
@@ -91,15 +91,15 @@ public class LocationController
         double locationLatitude = Double.parseDouble(stringLocationLatitude);
 
         //Add the location
-        Location location = lsl.createLocation(locationName,locaitonDescription,locationAddress,locationLongitude,locationLatitude);
-        lsl.updateLocation(location);
+        Location location = serviceLayer.createLocation(locationName,locaitonDescription,locationAddress,locationLongitude,locationLatitude);
+        serviceLayer.updateLocation(location);
 
         return "redirect:/locations";
     }
 
     @GetMapping("deleteLocation")
     public String deleteLocation(Integer locationID) {
-        lsl.deleteLocationById(locationID);
+        serviceLayer.deleteLocationById(locationID);
         return "redirect:/locations";
     }
 }

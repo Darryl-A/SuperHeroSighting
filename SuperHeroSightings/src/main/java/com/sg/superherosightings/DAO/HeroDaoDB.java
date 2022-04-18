@@ -28,14 +28,14 @@ public class HeroDaoDB implements HeroDao
     @Autowired
    JdbcTemplate jdbc;
     
-    @Autowired
-    SightingDao sightingDao;
-    
-    @Autowired
-    SuperpowerDao superpowerDao;
-    
-    @Autowired
-    SuperpowerDaoDB superpowerDaob;
+//    @Autowired
+//    SightingDao sightingDao;
+//    
+//    @Autowired
+//    SuperpowerDao superpowerDao;
+//    
+//    @Autowired
+//    SuperpowerDaoDB superpowerDaob;
             
     @Override
     public Hero getHeroById(int heroID) 

@@ -5,7 +5,7 @@
 package com.sg.superherosightings.Controller;
 
 import com.sg.superherosightings.entities.Superpower;
-import com.sg.superherosightings.service.SuperpowerServiceLayer;
+import com.sg.superherosightings.service.ServiceLayer;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SuperpowerController 
 {
 
-    private SuperpowerServiceLayer spServiceLayer;
-    public SuperpowerController(SuperpowerServiceLayer superpowerServiceLayer) 
-    {
-        this.spServiceLayer = superpowerServiceLayer;
+    public SuperpowerController(ServiceLayer servicelayer) {
+        this.serviceLayer = servicelayer;
     }
+
+   private final ServiceLayer serviceLayer;
     
     @GetMapping("superpowers")
     public String displaySuperpowers(Model model)
     {
-        List<Superpower> superpowers = spServiceLayer.getAllSuperpowers();
+        List<Superpower> superpowers = serviceLayer.getAllSuperpowers();
         model.addAttribute("superpowers", superpowers);
         return "superpowers";
     }
@@ -39,28 +39,28 @@ public class SuperpowerController
     {
         Superpower superpower = new Superpower();
         superpower.setSuperpowerName(superpowerName);
-        spServiceLayer.addSuperpower(superpower);
+        serviceLayer.addSuperpower(superpower);
         return "redirect:/superpowers";
     }
     
     @GetMapping("deleteSuperpower")
     public String deleteSuperpower(Integer id) 
     {
-        spServiceLayer.deleteSuperpowerById(id);
+        serviceLayer.deleteSuperpowerById(id);
         return "redirect:/superpowers";
     }
     
      @GetMapping("editSuperpower")
     public String editSuperpower(Integer id, Model model) 
     {
-        Superpower superpower = spServiceLayer.getSuperpowerById(id);
+        Superpower superpower = serviceLayer.getSuperpowerById(id);
         model.addAttribute("superpower", superpower);
         return "editSuperpower";
     }
     @PostMapping("editSuperpower")
     public String performEditSuperpower(Superpower superpower) 
     {
-        spServiceLayer.updateSuperpower(superpower);
+        serviceLayer.updateSuperpower(superpower);
         return "redirect:/superpowers";
     }
 }

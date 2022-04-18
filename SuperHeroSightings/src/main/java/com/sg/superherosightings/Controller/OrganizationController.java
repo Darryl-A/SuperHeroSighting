@@ -6,8 +6,7 @@ package com.sg.superherosightings.Controller;
 
 import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Organization;
-import com.sg.superherosightings.service.HeroServiceLayer;
-import com.sg.superherosightings.service.OrganizationServiceLayer;
+import com.sg.superherosightings.service.ServiceLayer;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -23,15 +22,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class OrganizationController
 {
-    private final OrganizationServiceLayer osl;
-    private final HeroServiceLayer hs;
 
-    //Controller for the organization 
-    public OrganizationController(OrganizationServiceLayer osl, HeroServiceLayer hs)
+    public OrganizationController(ServiceLayer serviceLayer) 
     {
-        this.osl = osl;
-        this.hs = hs;
+        this.serviceLayer = serviceLayer;
     }
+    
+    private final ServiceLayer serviceLayer;
 
     /**
      * Gets all organizations
@@ -41,7 +38,7 @@ public class OrganizationController
     @GetMapping("organizations")
     public String displayOrganizations(Model model)
     {
-        List<Organization> organizations = osl.getAllOrganizations();
+        List<Organization> organizations = serviceLayer.getAllOrganizations();
         model.addAttribute("organizations", organizations);
         return "organizations";
     }
@@ -64,12 +61,12 @@ public class OrganizationController
         List<Hero> heroes = new ArrayList<>();
         for(String id : heroID) 
         {
-            heroes.add(hs.getHeroById(Integer.parseInt(id)));
+            heroes.add(serviceLayer.getHeroById(Integer.parseInt(id)));
         }
 
         //Create a new organization given the values
-        Organization o = osl.createAnOrganzation(organizationName, organizationDescription, heroes, organizationAddress);
-        osl.addOrganization(o);
+        Organization o = serviceLayer.createAnOrganzation(organizationName, organizationDescription, heroes, organizationAddress);
+        serviceLayer.addOrganization(o);
         
         return "redirect:/organizations";
     } 
@@ -83,9 +80,9 @@ public class OrganizationController
     public String editOrganization(HttpServletRequest request, Model model) 
     {
         int organizationID = Integer.parseInt(request.getParameter("organizationID"));
-        Organization organization = osl.getOrganizationById(organizationID);
+        Organization organization = serviceLayer.getOrganizationById(organizationID);
 
-        List<Hero> heroes = hs.getAllHeroes();
+        List<Hero> heroes = serviceLayer.getAllHeroes();
         model.addAttribute("organization", organization);
         model.addAttribute("heroes", heroes);
     
@@ -109,14 +106,14 @@ public class OrganizationController
         List<Hero> heroes = new ArrayList<>();
         for(String id : heroID) 
         {
-            heroes.add(hs.getHeroById(Integer.parseInt(id)));
+            heroes.add(serviceLayer.getHeroById(Integer.parseInt(id)));
         }
 
-        Organization o = osl.createAnOrganzation(organizationName, organizationDescription, heroes, organizationAddress);
+        Organization o = serviceLayer.createAnOrganzation(organizationName, organizationDescription, heroes, organizationAddress);
         o.setOrganizationID(organizationID);
 
         //Update the organization
-        osl.updateOrganization(o);
+        serviceLayer.updateOrganization(o);
 
         return "redirect:/organizations";
     }
@@ -127,7 +124,7 @@ public class OrganizationController
     @GetMapping("/organizations/deleteOrganization")
     public String deleteOrganization(Integer id) 
     {
-        osl.deleteOrganizationById(id);
+        serviceLayer.deleteOrganizationById(id);
         return "redirect:/organizations";
     }
 }

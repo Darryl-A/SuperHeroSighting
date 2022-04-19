@@ -32,7 +32,7 @@
           <a href="index.html" class="btn btn-outline-secondary btn-md">HOME</a>
         </div>
         <div class="col text-center m-3">
-          <a href="heroes" class="btn btn-outline-secondary btn-md">HEROES</a>
+          <a href="heroes" class="btn btn-outline-primary btn-md">HEROES</a>
         </div>
         <div class="col text-center m-3">
           <a href="superpowers" class="btn btn-outline-secondary btn-md"
@@ -45,7 +45,7 @@
           >
         </div>
         <div class="col text-center m-3">
-          <a href="organizations" class="btn btn-outline-primary btn-md"
+          <a href="organizations" class="btn btn-outline-secondary btn-md"
             >ORGANIZATION</a
           >
         </div>
@@ -113,7 +113,7 @@
                   <option
                     th:each="superpower : ${superpowers}"
                     th:value="${superpower.superpowerID}"
-                    th:text="${superpower.superpowerID}"
+                    th:text="${superpower.superpowerName}"
                   >
                     Superpower Name
                   </option>
@@ -135,7 +135,7 @@
                   <option
                     th:each="organization : ${organizations}"
                     th:value="${organization .organization ID}"
-                    th:text="${organization .organization Name}"
+                    th:text="${organization .organizationName}"
                   >
                     Organization Name
                   </option>

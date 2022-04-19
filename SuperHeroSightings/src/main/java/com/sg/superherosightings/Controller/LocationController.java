@@ -4,7 +4,9 @@
  */
 package com.sg.superherosightings.Controller;
 
+import com.sg.superherosightings.entities.Hero;
 import com.sg.superherosightings.entities.Location;
+import com.sg.superherosightings.entities.Sighting;
 import com.sg.superherosightings.service.ServiceLayer;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LocationController
 {
 
-    public LocationController(ServiceLayer serviceLayer) {
+    public LocationController(ServiceLayer serviceLayer) 
+    {
         this.serviceLayer = serviceLayer;
     }
     
@@ -48,8 +51,8 @@ public class LocationController
         String locationName = request.getParameter("locationName");
         String stringLocationLatitude = request.getParameter("latitude");
         String stringLocationLongitude = request.getParameter("longitude");
-        String locaitonDescription = request.getParameter("description");
-        String locationAddress = request.getParameter("addressInformation");
+        String locationDescription = request.getParameter("locationDescription");
+        String locationAddress = request.getParameter("locationAddress");
 
         //Convert longitude to double
         double locationLongitude = Double.parseDouble(stringLocationLongitude);
@@ -58,7 +61,7 @@ public class LocationController
         double locationLatitude = Double.parseDouble(stringLocationLatitude);
 
         //Add the location
-        Location location = serviceLayer.createLocation(locationName,locaitonDescription,locationAddress,locationLongitude,locationLatitude);
+        Location location = serviceLayer.createLocation(locationName,locationDescription,locationAddress,locationLongitude,locationLatitude);
         serviceLayer.addLocation(location);
 
         return "redirect:/locations";
@@ -98,8 +101,23 @@ public class LocationController
     }
 
     @GetMapping("deleteLocation")
-    public String deleteLocation(Integer locationID) {
-        serviceLayer.deleteLocationById(locationID);
+    public String deleteLocation(Integer id) 
+    {
+        serviceLayer.deleteLocationById(id);
         return "redirect:/locations";
+    }
+    @GetMapping("infoLocation")
+    public String infoLocation(HttpServletRequest request, Model model)
+    {    
+        int locationID = Integer.parseInt(request.getParameter("locationID"));
+
+        Location location = serviceLayer.getLocationById(locationID);
+        model.addAttribute("location", location);
+
+        //List<Hero> heroes = serviceLayer.getHerosForLocation(locationID);
+        //model.addAttribute("heroes", heroes);
+        List<Sighting> hero = serviceLayer.getAllSightingsForLocation(location);
+        model.addAttribute("locations", location);
+        return "detailsLocation";
     }
 }

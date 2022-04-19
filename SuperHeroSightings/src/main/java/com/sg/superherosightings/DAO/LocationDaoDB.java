@@ -69,7 +69,7 @@ public class LocationDaoDB implements LocationDao
     public void updateLocation(Location location) 
     {
         final String UPDATE_LOCATION = "UPDATE Location SET LocationName = ?, locationDescription = ?, locationAddress = ?, latitude = ?,longitude = ?"
-                + "WHERE id = ?";
+                + "WHERE locationID = ?";
         jdbc.update(UPDATE_LOCATION,
                 location.getLocationName(),
                 location.getLocationDescription(),
@@ -81,13 +81,13 @@ public class LocationDaoDB implements LocationDao
 
     @Override
     @Transactional
-    public void deleteLocationById(int id) 
+    public void deleteLocationById(int locationID) 
     {
-        final String DELETE_SIGHTING_LOCATION = "DELETE FROM Sighting WHERE LocationID = ?";
-        jdbc.update(DELETE_SIGHTING_LOCATION, id);
+        final String DELETE_SIGHTING_LOCATION = "DELETE FROM Sighting WHERE locationID = ?";
+        jdbc.update(DELETE_SIGHTING_LOCATION, locationID);
         
-        final String DELETE_STUDENT = "DELETE FROM student WHERE id = ?";
-        jdbc.update(DELETE_STUDENT, id);
+        final String DELETE_LOCATION = "DELETE FROM Location WHERE locationID = ?";
+        jdbc.update(DELETE_LOCATION, locationID);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class LocationDaoDB implements LocationDao
     public static final class LocationMapper implements RowMapper<Location> 
    {
 
-        @Override
+    @Override
         public Location mapRow(ResultSet rs, int index) throws SQLException 
         {
             Location location = new Location();

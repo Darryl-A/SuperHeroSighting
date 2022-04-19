@@ -24,7 +24,7 @@
     <div class="container">
       <div class="row m-4">
         <div class="col text-center border border-dark">
-          <h1><a href="/" class="text-dark">Locations</a></h1>
+          <h1><a href="/" class="text-dark">LOCATIONS</a></h1>
         </div>
       </div>
       <div class="row m-4 border border-dark">
@@ -60,35 +60,35 @@
           <span class="h3">Add Location</span>
         </div>
         <div class="col-7 text-center m-3">
-          <form action="addOrganization" method="POST">
+          <form action="addLocation" method="POST">
             <div class="form-group row">
-              <label for="name" class="col-3 col-form-label"> Name</label>
+              <label for="locationName" class="col-3 col-form-label"> Name</label>
               <div class="col-9">
-                <input type="text" name="name" id="name" class="form-control" />
+                <input type="text" name="locationName" id="locationName" class="form-control" />
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="description" class="col-3 col-form-label">
+              <label for="locationDescription" class="col-3 col-form-label">
                 Description</label
               >
               <div class="col-9">
                 <input
                   type="text"
-                  name="description"
-                  id="description"
+                  name="locationDescription"
+                  id="locationDescription"
                   class="form-control"
                 />
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="address" class="col-3 col-form-label"> Address</label>
+              <label for="locationAddress" class="col-3 col-form-label"> Address</label>
               <div class="col-9">
                 <input
                   type="text"
-                  name="address"
-                  id="address"
+                  name="locationAddress"
+                  id="locationAddress"
                   class="form-control"
                 />
               </div>
@@ -115,20 +115,6 @@
                 />
               </div>
             </div>
-            <div class="form-group row">
-              <label for="members" class="col-3 col-form-label"> Members</label>
-              <div class="col-9">
-                <select multiple id="heroID" name="heroID" class="form-control">
-                  <option
-                    th:each="hero : ${heroes}"
-                    th:value="${hero.heroID}"
-                    th:text="${hero.heroName}"
-                  >
-                    Hero Name
-                  </option>
-                </select>
-              </div>
-            </div>
             <button type="submit" class="btn btn-primary">
               Add Location
             </button>
@@ -148,27 +134,27 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="organization : ${organizations}">
-                <td th:text="${organization.organizationID}">ID</td>
-                <td th:text="${organization.organizationName}">Name</td>
+              <tr th:each="location : ${locations}">
+                <td th:text="${location.locationID}">Location ID</td>
+                <td th:text="${location.locationName}">Location Name</td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/infoOrganization(id=${organization.organizationID})}"
+                    th:href="@{/infoLocation(id=${location.locationID})}"
                     >Details</a
                   >
                 </td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/editOrganization(id=${organization.organizationID})}"
+                    th:href="@{/editLocation(id=${location.locationID})}"
                     >Edit</a
                   >
                 </td>
                 <td>
                   <a
                     href="#"
-                    th:href="@{/deleteOrganization(id=${organization.organizationID})}"
+                    th:href="@{/deleteLocation(id=${location.locationID})}"
                     >Delete</a
                   >
                 </td>

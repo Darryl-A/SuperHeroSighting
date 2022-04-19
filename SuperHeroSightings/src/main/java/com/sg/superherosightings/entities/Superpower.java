@@ -13,6 +13,8 @@ import java.util.Objects;
  */
 public class Superpower 
 {
+    private int superpowerID;
+    private String superpowerName;
 
     @Override
     public int hashCode() {
@@ -39,9 +41,6 @@ public class Superpower
         }
         return Objects.equals(this.superpowerName, other.superpowerName);
     }
-    private int superpowerID;
-    private String superpowerName;
-
     public int getSuperpowerID() 
     {
         return superpowerID;
